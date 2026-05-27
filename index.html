@@ -427,7 +427,117 @@ Quelques éclats rouges et or rallument la mémoire secrète du chaos.
 © Claude Grand — Claudius Art Studio
 
 </footer>
+<script>
 
+function teleportSalle(){
+
+document
+.getElementById("cameraRig")
+.setAttribute(
+"position",
+"0 1.6 -15"
+);
+
+}
+
+const images=[
+
+"images/Les_abstraits/amadeus.jpg",
+
+"images/Les_abstraits/ange_bleu.jpg",
+
+"images/Les_abstraits/arbre_des_fees.jpg",
+
+"images/Les_abstraits/ballade2.jpg",
+
+"images/Les_abstraits/la_melancolie.jpg",
+
+"images/Les_abstraits/vivalova.jpg",
+
+"images/Les_abstraits/voxys.jpg"
+
+];
+
+let current=0;
+
+function openViewer(index){
+
+current=index;
+
+document.getElementById(
+"viewer"
+).style.display="block";
+
+document.getElementById(
+"viewerImg"
+).src=images[current];
+
+}
+
+function closeViewer(){
+
+document.getElementById(
+"viewer"
+).style.display="none";
+
+}
+
+document.getElementById(
+"nextBtn"
+).onclick=function(){
+
+current++;
+
+if(current>=images.length){
+
+current=0;
+
+}
+
+document.getElementById(
+"viewerImg"
+).src=images[current];
+
+};
+
+document.getElementById(
+"prevBtn"
+).onclick=function(){
+
+current--;
+
+if(current<0){
+
+current=images.length-1;
+
+}
+
+document.getElementById(
+"viewerImg"
+).src=images[current];
+
+};
+
+window.onload=function(){
+
+const tableaux=document.querySelectorAll("a-image");
+
+tableaux.forEach((img,index)=>{
+
+if(index>0){
+
+img.addEventListener(
+"click",
+()=>openViewer(index-1)
+);
+
+}
+
+});
+
+};
+
+</script>
 </body>
 
 </html>
