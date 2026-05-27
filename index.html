@@ -4,97 +4,116 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Claudius Art Studio</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
 <style>
 
 body{
-margin:0;
-overflow:hidden;
-font-family:Arial;
+    margin:0;
+    background:#0d0d0d;
+    color:white;
+    font-family:Arial,sans-serif;
 }
 
-#menu{
-position:absolute;
-top:20px;
-left:20px;
-z-index:999;
-background:rgba(0,0,0,0.75);
-padding:15px;
-border-radius:15px;
-color:white;
+header{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.85)),
+    url('images/les_abstraits/amadeus.jpg') center/cover;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
 }
 
-button{
-display:block;
-margin-top:10px;
-padding:10px;
-width:180px;
-background:#ff7a00;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
+header h1{
+    font-size:4rem;
+    margin-bottom:20px;
+    letter-spacing:3px;
 }
 
-#viewer{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.92);
-z-index:9999;
+header p{
+    max-width:700px;
+    line-height:1.6;
+    color:#ddd;
 }
 
-#viewer img{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-max-width:85%;
-max-height:85%;
-border:4px solid white;
-border-radius:10px;
+.btn{
+    margin-top:30px;
+    padding:14px 30px;
+    background:#b22222;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    transition:0.3s;
 }
 
-.viewerBtn{
-position:absolute;
-top:50%;
-transform:translateY(-50%);
-font-size:50px;
-background:none;
-border:none;
-color:white;
-cursor:pointer;
-padding:20px;
+.btn:hover{
+    background:#e03a3a;
 }
 
-#prevBtn{
-left:20px;
+section{
+    padding:70px 8%;
 }
 
-#nextBtn{
-right:20px;
+h2{
+    font-size:2rem;
+    margin-bottom:40px;
+    border-bottom:1px solid #333;
+    padding-bottom:10px;
 }
 
-#closeBtn{
-position:absolute;
-top:20px;
-right:20px;
-font-size:25px;
-background:red;
-color:white;
-border:none;
-padding:10px 15px;
-cursor:pointer;
-border-radius:8px;
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+
+.card{
+    background:#181818;
+    border-radius:12px;
+    overflow:hidden;
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.02);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content{
+    padding:22px;
+}
+
+.card-content h3{
+    margin-top:0;
+    margin-bottom:12px;
+    font-size:1.4rem;
+}
+
+.card-content p{
+    color:#ccc;
+    line-height:1.6;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#888;
+    border-top:1px solid #222;
 }
 
 </style>
@@ -103,187 +122,311 @@ border-radius:8px;
 
 <body>
 
-<div id="menu">
+<header>
 
-<h2>CLAUDIUS ART STUDIO</h2>
+<h1>Claudius Art Studio</h1>
 
-<button onclick="teleportSalle()">
-Entrer : Les Abstraits
-</button>
+<p>
+Peintures originales de Claude Grand.
+Un univers de matière, de mémoire et de lumière.
+</p>
 
-</div>
+<a href="#galerie" class="btn">
+Découvrir les œuvres
+</a>
 
-<a-scene>
+</header>
 
-<a-assets>
+<section id="galerie">
 
-<img id="logo"
-src="assets/claudius_art_studio_logo.png">
+<h2>Les Abstraits</h2>
 
-<img id="amadeus"
-src="images/Les_abstraits/amadeus.jpg">
+<div class="gallery">
 
-<img id="ange"
-src="images/Les_abstraits/ange_bleu.jpg">
 
-<img id="arbre"
-src="images/Les_abstraits/arbre_des_fees.jpg">
+<a class="card" href="images/les_abstraits/amadeus.jpg" target="_blank">
 
-<img id="ballade"
-src="images/Les_abstraits/ballade2.jpg">
+<img src="images/les_abstraits/amadeus.jpg">
 
-<img id="melancolie"
-src="images/Les_abstraits/la_melancolie.jpg">
+<div class="card-content">
 
-<img id="vivalova"
-src="images/Les_abstraits/vivalova.jpg">
+<h3>Amadéus</h3>
 
-<img id="voxys"
-src="images/Les_abstraits/voxys.jpg">
+<p><strong>Technique :</strong> Acrylique sur papier</p>
 
-</a-assets>
+<p><strong>Dimensions :</strong> 120 x 80 cm</p>
 
-<a-sky color="#111"></a-sky>
-
-<a-light
-type="ambient"
-intensity="1">
-</a-light>
-
-<a-light
-type="point"
-position="0 8 0"
-intensity="2">
-</a-light>
-
-<a-plane
-rotation="-90 0 0"
-width="80"
-height="80"
-color="#222">
-</a-plane>
-
-<a-image
-src="#logo"
-position="0 5 -6"
-width="8"
-height="3">
-</a-image>
-
-<a-box
-position="0 2 -28"
-width="18"
-height="5"
-depth="22"
-color="#333">
-</a-box>
-
-<a-text
-value="LES ABSTRAITS"
-position="-2 5 -18"
-color="#ff7a00">
-</a-text>
-
-<a-image
-class="tableau"
-src="#amadeus"
-position="-8 3 -22"
-rotation="0 90 0"
-width="3"
-height="3">
-</a-image>
-
-<a-image
-class="tableau"
-src="#ange"
-position="-8 3 -28"
-rotation="0 90 0"
-width="3"
-height="3">
-</a-image>
-
-<a-image
-class="tableau"
-src="#arbre"
-position="-8 3 -34"
-rotation="0 90 0"
-width="3"
-height="3">
-</a-image>
-
-<a-image
-class="tableau"
-src="#ballade"
-position="8 3 -22"
-rotation="0 -90 0"
-width="3"
-height="3">
-</a-image>
-
-<a-image
-class="tableau"
-src="#melancolie"
-position="8 3 -28"
-rotation="0 -90 0"
-width="3"
-height="3">
-</a-image>
-
-<a-image
-class="tableau"
-src="#vivalova"
-position="8 3 -34"
-rotation="0 -90 0"
-width="3"
-height="3">
-</a-image>
-
-<a-image
-class="tableau"
-src="#voxys"
-position="0 3 -38"
-width="5"
-height="3">
-</a-image>
-
-<a-entity
-id="cameraRig"
-position="0 1.6 6">
-
-<a-camera
-look-controls
-wasd-controls>
-</a-camera>
-
-</a-entity>
-
-</a-scene>
-
-<!-- Visionneuse -->
-
-<div id="viewer">
-
-<img id="viewerImg">
-
-<button
-id="prevBtn"
-class="viewerBtn">
-❮
-</button>
-
-<button
-id="nextBtn"
-class="viewerBtn">
-❯
-</button>
-
-<button
-id="closeBtn">
-X
-</button>
+<p>
+Des torrents de feu et d’azur jaillissent dans un même souffle.
+La couleur explose, libre et sauvage, comme une énergie impossible à contenir.
+</p>
 
 </div>
 
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/ange_bleu.jpg" target="_blank">
+
+<img src="images/les_abstraits/ange_bleu.jpg">
+
+<div class="card-content">
+
+<h3>Ange bleu</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 130 x 90 cm</p>
+
+<p>
+Des courants de lumière et de lave traversent la toile dans une danse sauvage.
+La couleur devient souffle, tempête et naissance d’un monde incandescent.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/arbre_des_fees.jpeg" target="_blank">
+
+<img src="images/les_abstraits/arbre_des_fees.jpeg">
+
+<div class="card-content">
+
+<h3>L’arbre des fées</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 130 x 90 cm</p>
+
+<p>
+Dans une pluie d’éclats et de couleurs, l’arbre déploie ses branches comme des veines de lumière reliant la terre aux songes invisibles.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/ballade1.jpg" target="_blank">
+
+<img src="images/les_abstraits/ballade1.jpg">
+
+<div class="card-content">
+
+<h3>Ballade 1</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 50 x 70 cm</p>
+
+<p>
+Des formes anciennes émergent de la pénombre comme des fragments de mémoire.
+La lumière ocre réchauffe doucement ce monde immobile et mystérieux.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/ballade2.jpg" target="_blank">
+
+<img src="images/les_abstraits/ballade2.jpg">
+
+<div class="card-content">
+
+<h3>Ballade 2</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 50 x 70 cm</p>
+
+<p>
+Des fragments de lumière et de matière s’équilibrent dans un silence profond.
+L’ocre et le rouge semblent garder la chaleur secrète d’un paysage oublié.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/exclamation.jpg" target="_blank">
+
+<img src="images/les_abstraits/exclamation.jpg">
+
+<div class="card-content">
+
+<h3>Exclamation</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 75 x 110 cm</p>
+
+<p>
+Des masses sombres et lumineuses se frôlent dans une tension silencieuse.
+Le rouge éclaire l’espace comme une présence vive au cœur de l’ombre.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/la_melancolie.jpg" target="_blank">
+
+<img src="images/les_abstraits/la_melancolie.jpg">
+
+<div class="card-content">
+
+<h3>La mélancolie</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 75 x 110 cm</p>
+
+<p>
+Sous un soleil immobile, les formes dressées veillent dans le silence.
+Les rouges profonds et les matières usées racontent la mémoire d’une cité intérieure.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/melancolie2.jpg" target="_blank">
+
+<img src="images/les_abstraits/melancolie2.jpg">
+
+<div class="card-content">
+
+<h3>Mélancolie 2</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 75 x 110 cm</p>
+
+<p>
+Sous un soleil blessé, les formes s’élèvent dans une pluie de matières et d’éclats.
+Le rouge consume lentement le silence d’une ville intérieure.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/nu7.jpg" target="_blank">
+
+<img src="images/les_abstraits/nu7.jpg">
+
+<div class="card-content">
+
+<h3>Nu 7</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 75 x 110 cm</p>
+
+<p>
+Courbes douces et lumière fragile dessinent une présence intime.
+Dans les rouges profonds du fond, le corps semble flotter entre force et abandon.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/presence_verticale.jpg" target="_blank">
+
+<img src="images/les_abstraits/presence_verticale.jpg">
+
+<div class="card-content">
+
+<h3>Présence verticale</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 75 x 110 cm</p>
+
+<p>
+Une forme obscure traverse la lumière comme une apparition silencieuse.
+Le rouge et l’or vibrent ensemble dans une tension lente et presque sacrée.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/vivalova.jpg" target="_blank">
+
+<img src="images/les_abstraits/vivalova.jpg">
+
+<div class="card-content">
+
+<h3>Vivalova</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 80 x 120 cm</p>
+
+<p>
+Des éclats de couleurs s’entrechoquent dans une course libre et instinctive.
+La toile devient mouvement, vibration et énergie suspendue dans le rouge incandescent.
+</p>
+
+</div>
+
+</a>
+
+
+
+<a class="card" href="images/les_abstraits/voxys.jpg" target="_blank">
+
+<img src="images/les_abstraits/voxys.jpg">
+
+<div class="card-content">
+
+<h3>Voxys</h3>
+
+<p><strong>Technique :</strong> Acrylique sur toile</p>
+
+<p><strong>Dimensions :</strong> 80 x 120 cm</p>
+
+<p>
+Des signes noirs traversent l’espace comme des fragments d’écriture oubliée.
+Quelques éclats rouges et or rallument la mémoire secrète du chaos.
+</p>
+
+</div>
+
+</a>
+
+
+</div>
+
+</section>
+
+<footer>
+
+© Claude Grand — Claudius Art Studio
+
+</footer>
 <script>
 
 function teleportSalle(){
@@ -297,7 +440,7 @@ document
 
 }
 
-const images = [
+const images=[
 
 "images/Les_abstraits/amadeus.jpg",
 
@@ -315,128 +458,86 @@ const images = [
 
 ];
 
-let current = 0;
-
-const viewer =
-document.getElementById("viewer");
-
-const viewerImg =
-document.getElementById("viewerImg");
+let current=0;
 
 function openViewer(index){
 
-current = index;
+current=index;
 
-viewer.style.display = "block";
+document.getElementById(
+"viewer"
+).style.display="block";
 
-viewerImg.src = images[current];
+document.getElementById(
+"viewerImg"
+).src=images[current];
 
 }
 
 function closeViewer(){
 
-viewer.style.display = "none";
+document.getElementById(
+"viewer"
+).style.display="none";
 
 }
 
-document
-.getElementById("closeBtn")
-.addEventListener(
-"click",
-closeViewer
-);
-
-document
-.getElementById("nextBtn")
-.addEventListener(
-"click",
-function(){
+document.getElementById(
+"nextBtn"
+).onclick=function(){
 
 current++;
 
-if(current >= images.length){
+if(current>=images.length){
 
-current = 0;
-
-}
-
-viewerImg.src = images[current];
+current=0;
 
 }
-);
 
-document
-.getElementById("prevBtn")
-.addEventListener(
-"click",
-function(){
+document.getElementById(
+"viewerImg"
+).src=images[current];
+
+};
+
+document.getElementById(
+"prevBtn"
+).onclick=function(){
 
 current--;
 
-if(current < 0){
+if(current<0){
 
-current = images.length - 1;
-
-}
-
-viewerImg.src = images[current];
+current=images.length-1;
 
 }
-);
 
-const tableaux =
-document.querySelectorAll(".tableau");
+document.getElementById(
+"viewerImg"
+).src=images[current];
 
-tableaux.forEach(
-function(tableau,index){
+};
 
-tableau.addEventListener(
+window.onload=function(){
+
+const tableaux=document.querySelectorAll("a-image");
+
+tableaux.forEach((img,index)=>{
+
+if(index>0){
+
+img.addEventListener(
 "click",
-function(){
-
-openViewer(index);
-
-}
+()=>openViewer(index-1)
 );
 
 }
-);
 
-document.addEventListener(
-"keydown",
-function(e){
+});
 
-if(viewer.style.display==="block"){
-
-if(e.key==="ArrowRight"){
-
-document
-.getElementById("nextBtn")
-.click();
-
-}
-
-if(e.key==="ArrowLeft"){
-
-document
-.getElementById("prevBtn")
-.click();
-
-}
-
-if(e.key==="Escape"){
-
-closeViewer();
-
-}
-
-}
-
-}
-);
+};
 
 </script>
-
 </body>
 
 </html>
