@@ -494,24 +494,52 @@ document
 
 }
 
-const images=[
+const series = {
 
-"images/Les_abstraits/amadeus.jpg",
+"Les Abstraits":[
 
-"images/Les_abstraits/ange_bleu.jpg",
+{
+src:"images/Les_abstraits/amadeus.jpg",
+title:"Amadeus",
+details:"Huile sur toile • 70 x 50 cm • 2024",
+comment:"Une architecture intérieure portée par la lumière."
+},
 
-"images/Les_abstraits/arbre_des_fees.jpg",
+{
+src:"images/Les_abstraits/ange_bleu.jpg",
+title:"Ange Bleu",
+details:"Acrylique sur toile • 80 x 60 cm • 2024",
+comment:"Une présence silencieuse traverse les couleurs."
+},
 
-"images/Les_abstraits/ballade2.jpg",
+{
+src:"images/Les_abstraits/arbre_des_fees.jpg",
+title:"Arbre des Fées",
+details:"Technique mixte • 70 x 50 cm • 2023",
+comment:"Un arbre imaginaire né d’un rêve ancien."
+}
 
-"images/Les_abstraits/la_melancolie.jpg",
+],
 
-"images/Les_abstraits/vivalova.jpg",
+"Les Évasions":[
 
-"images/Les_abstraits/voxys.jpg"
+{
+src:"images/les_evasions/evasion1.jpg",
+title:"Les Voyageurs du Silence",
+details:"Huile sur toile • 70 x 50 cm • 2025",
+comment:"Une ville suspendue entre mémoire et lumière."
+},
 
-];
+{
+src:"images/les_evasions/evasion2.jpg",
+title:"Crépuscule intérieur",
+details:"Acrylique sur toile • 80 x 60 cm • 2025",
+comment:"Des formes traversées par le silence du temps."
+}
 
+]
+
+};
 let current=0;
 
 function openViewer(index){
