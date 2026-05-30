@@ -124,6 +124,48 @@ border-radius:20px;
 .menu-series a:hover{
 background:#b22222;
 }
+.viewer{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.92);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+}
+
+.viewer img{
+    max-width:90%;
+    max-height:85%;
+    border-radius:10px;
+}
+
+.close-viewer,
+.prev-viewer,
+.next-viewer{
+    position:absolute;
+    color:white;
+    font-size:3rem;
+    cursor:pointer;
+    user-select:none;
+}
+
+.close-viewer{
+    top:25px;
+    right:35px;
+}
+
+.prev-viewer{
+    left:35px;
+    top:50%;
+}
+
+.next-viewer{
+    right:35px;
+    top:50%;
+}
+
+    
 footer{
     text-align:center;
     padding:40px;
@@ -642,10 +684,66 @@ Le ponton avance là où commencent nos souvenirs
 </div>
 
 </section>
-
+<div class="viewer" id="viewer">
+    <span class="close-viewer" onclick="closeViewer()">×</span>
+    <span class="prev-viewer" onclick="changeImage(-1)">‹</span>
+    <img id="viewerImg" src="">
+    <span class="next-viewer" onclick="changeImage(1)">›</span>
+</div>
 <footer>
 © Claude Grand — Claudius Art Studio
 </footer>
+<script>
+let currentImages = [];
+let currentIndex = 0;
 
+document.querySelectorAll(".gallery").forEach(gallery => {
+    const cards = gallery.querySelectorAll(".card");
+
+    cards.forEach((card, index) => {
+        card.addEventListener("click", function(event){
+            event.preventDefault();
+
+            currentImages = Array.from(cards).map(c => c.getAttribute("href"));
+            currentIndex = index;
+
+            document.getElementById("viewerImg").src = currentImages[currentIndex];
+            document.getElementById("viewer").style.display = "flex";
+        });
+    });
+});
+
+function closeViewer(){
+    document.getElementById("viewer").style.display = "none";
+}
+
+function changeImage(direction){
+    currentIndex += direction;
+
+    if(currentIndex < 0){
+        currentIndex = currentImages.length - 1;
+    }
+
+    if(currentIndex >= currentImages.length){
+        currentIndex = 0;
+    }
+
+    document.getElementById("viewerImg").src = currentImages[currentIndex];
+}
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+        closeViewer();
+    }
+
+    if(event.key === "ArrowRight"){
+        changeImage(1);
+    }
+
+    if(event.key === "ArrowLeft"){
+        changeImage(-1);
+    }
+});
+</script>
 </body>
 </html>
