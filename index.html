@@ -183,7 +183,16 @@ footer{
     padding:40px;
     color:#888;
     border-top:1px solid #222;
+    
 }
+#viewerTitle{
+    color:white;
+    font-size:1.4rem;
+    text-align:center;
+    margin-top:20px;
+    font-family:Georgia, serif;
+}
+    
 </style>
 </head>
 
@@ -2400,10 +2409,15 @@ Dans le silence des formes naît une architecture intérieure, où chaque ligne 
  </div>
     
 </section>
+
 <div class="viewer" id="viewer">
     <span class="close-viewer" onclick="closeViewer()">×</span>
     <span class="prev-viewer" onclick="changeImage(-1)">‹</span>
+
     <img id="viewerImg" src="">
+
+    <div id="viewerTitle"></div>
+
     <span class="next-viewer" onclick="changeImage(1)">›</span>
 </div>
 
