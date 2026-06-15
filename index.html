@@ -2435,9 +2435,10 @@ Dans le silence des formes naît une architecture intérieure, où chaque ligne 
 <footer>
 © Claude Grand — Claudius Art Studio
 </footer>
+    
 <script>
 let currentImages = [];
- let currentTitles = [];   
+let currentTitles = [];
 let currentIndex = 0;
 
 document.querySelectorAll(".gallery").forEach(gallery => {
@@ -2448,13 +2449,17 @@ document.querySelectorAll(".gallery").forEach(gallery => {
             event.preventDefault();
 
             currentImages = Array.from(cards).map(c => c.getAttribute("href"));
-            currentTitles = Array.from(cards).map(c =>
-    c.querySelector("h3").textContent
-);
+
+            currentTitles = Array.from(cards).map(c => {
+                const title = c.querySelector("h3");
+                return title ? title.textContent : "";
+            });
+
             currentIndex = index;
 
             document.getElementById("viewerImg").src = currentImages[currentIndex];
-          document.getElementById("viewerTitle").textContent = currentTitles[currentIndex];  
+            document.getElementById("viewerTitle").textContent = currentTitles[currentIndex];
+
             document.getElementById("viewer").style.display = "flex";
         });
     });
@@ -2476,9 +2481,7 @@ function changeImage(direction){
     }
 
     document.getElementById("viewerImg").src = currentImages[currentIndex];
-ument.getElementById("viewerTitle").textContent =
-        document.querySelectorAll(".card h3")[currentIndex].textContent;
-    
+    document.getElementById("viewerTitle").textContent = currentTitles[currentIndex];
 }
 
 document.addEventListener("keydown", function(event){
@@ -2495,5 +2498,7 @@ document.addEventListener("keydown", function(event){
     }
 });
 </script>
+
+
 </body>
 </html>
