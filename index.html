@@ -2509,36 +2509,43 @@ Dans le silence des formes naît une architecture intérieure, où chaque ligne 
 </footer>
     
 <script>
+<script>
 let currentImages = [];
 let currentTitles = [];
 let currentIndex = 0;
 
+const viewer = document.getElementById("viewer");
+const viewerImg = document.getElementById("viewerImg");
+const viewerTitle = document.getElementById("viewerTitle");
+
 document.querySelectorAll(".gallery").forEach(gallery => {
-    const cards = gallery.querySelectorAll(".card");
+    const cards = Array.from(gallery.querySelectorAll(".card"));
 
     cards.forEach((card, index) => {
         card.addEventListener("click", function(event){
             event.preventDefault();
 
-            currentImages = Array.from(cards).map(c => c.getAttribute("href"));
-
-            currentTitles = Array.from(cards).map(c => {
+            currentImages = cards.map(c => c.querySelector("img").src);
+            currentTitles = cards.map(c => {
                 const title = c.querySelector("h3");
                 return title ? title.textContent : "";
             });
 
             currentIndex = index;
-
-            document.getElementById("viewerImg").src = currentImages[currentIndex];
-            document.getElementById("viewerTitle").textContent = currentTitles[currentIndex];
-
-            document.getElementById("viewer").style.display = "flex";
+            openViewer();
         });
     });
 });
 
+function openViewer(){
+    viewerImg.src = currentImages[currentIndex];
+    viewerTitle.textContent = currentTitles[currentIndex];
+    viewer.style.display = "flex";
+}
+
 function closeViewer(){
-    document.getElementById("viewer").style.display = "none";
+    viewer.style.display = "none";
+    viewerImg.src = "";
 }
 
 function changeImage(direction){
@@ -2552,23 +2559,16 @@ function changeImage(direction){
         currentIndex = 0;
     }
 
-    document.getElementById("viewerImg").src = currentImages[currentIndex];
-    document.getElementById("viewerTitle").textContent = currentTitles[currentIndex];
+    viewerImg.src = currentImages[currentIndex];
+    viewerTitle.textContent = currentTitles[currentIndex];
 }
 
 document.addEventListener("keydown", function(event){
-    if(event.key === "Escape"){
-        closeViewer();
-    }
-
-    if(event.key === "ArrowRight"){
-        changeImage(1);
-    }
-
-    if(event.key === "ArrowLeft"){
-        changeImage(-1);
-    }
+    if(event.key === "Escape") closeViewer();
+    if(event.key === "ArrowRight") changeImage(1);
+    if(event.key === "ArrowLeft") changeImage(-1);
 });
+</script>
 </script>
 
 
