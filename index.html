@@ -201,8 +201,49 @@ footer{
     border-radius:8px;
     max-width:80%;
 }
+.card{
+    cursor:pointer;
+}
 
+.viewer{
+    flex-direction:column;
+}
 
+#viewerImg{
+    touch-action:none;
+}
+
+.close-viewer,
+.prev-viewer,
+.next-viewer{
+    z-index:10000;
+}
+@media screen and (max-width:700px){
+
+    .viewer img{
+        max-width:95vw;
+        max-height:75vh;
+    }
+
+    #viewerTitle{
+        font-size:1.1rem;
+        bottom:20px;
+        max-width:90%;
+    }
+
+    .prev-viewer{
+        left:15px;
+    }
+
+    .next-viewer{
+        right:15px;
+    }
+
+    .close-viewer{
+        top:15px;
+        right:20px;
+    }
+}
     
 </style>
 </head>
