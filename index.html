@@ -192,6 +192,15 @@ footer{
     margin-top:20px;
     font-family:Georgia, serif;
 }
+#viewerTitle{
+    color:white;
+    font-size:1.4rem;
+    text-align:center;
+    margin-top:20px;
+    font-family:Georgia, serif;
+}
+
+
     
 </style>
 </head>
@@ -2441,6 +2450,8 @@ document.querySelectorAll(".gallery").forEach(gallery => {
             currentIndex = index;
 
             document.getElementById("viewerImg").src = currentImages[currentIndex];
+           document.getElementById("viewerTitle").textContent =
+    document.querySelectorAll(".card h3")[currentIndex].textContent; 
             document.getElementById("viewer").style.display = "flex";
         });
     });
@@ -2462,6 +2473,9 @@ function changeImage(direction){
     }
 
     document.getElementById("viewerImg").src = currentImages[currentIndex];
+ument.getElementById("viewerTitle").textContent =
+        document.querySelectorAll(".card h3")[currentIndex].textContent;
+    
 }
 
 document.addEventListener("keydown", function(event){
